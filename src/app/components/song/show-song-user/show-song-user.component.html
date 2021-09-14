@@ -1,0 +1,36 @@
+<div class="row item-list item-list-by m-b">
+  <div *ngFor="let song of songs; let i = index;" class="col-xs-12">
+    <div [attr.data-id]="song.id" [attr.data-src]="song.path" class="item r">
+      <div class="item-media ">
+        <a [ngStyle]="{'background-image': 'url(' + song.song_image + ')'}"  class="item-media-content"></a>
+        <div class="item-overlay center">
+          <button class="btn-playpause">Play</button>
+        </div>
+      </div>
+      <div class="item-info">
+        <div class="item-overlay bottom text-right">
+<!--          <app-song-like [songIdInput]="song.id"></app-song-like>-->
+          <a class="btn-favorite" href="#"><i class="fa fa-heart-o"></i></a>
+          <a [attr.data-song-id]="song.id" class="btn-more" data-toggle="dropdown" href="#"><i class="fa fa-ellipsis-h"></i></a>
+          <div class="dropdown-menu pull-right black lt"></div>
+        </div>
+        <div class="item-title text-ellipsis">
+          <a>{{ song.song_name }}</a>
+        </div>
+        <div class="item-author text-sm text-ellipsis">
+        </div>
+        <div class="item-meta text-sm text-muted">
+          <span class="item-meta-category"><a class="label" href="browse.html">Ngày tạo</a></span>
+          <span class="item-meta-date text-xs">{{song.created_at}}6</span>
+        </div>
+        <div class="item-action visible-list m-t-sm">
+          <a  routerLink="/{{song.id}}/edit-song" class="btn btn-xs white" >Edit</a>
+          <button  (click)="delete(song.id)" class="btn btn-xs white">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

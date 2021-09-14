@@ -1,0 +1,37 @@
+<div class="row item-list item-list-by m-b">
+  <div *ngFor="let playlist of playlists; let i = index;" class="col-xs-12">
+    <div [attr.data-id]="playlist.id"  class="item r">
+      <div class="item-media ">
+        <a [ngStyle]="{'background-image': 'url(' + playlist.image + ')'}"  class="item-media-content"></a>
+        <div class="item-overlay center">
+          <a class="btn-playpause">Play</a>
+        </div>
+      </div>
+      <div class="item-info">
+        <div class="item-overlay bottom text-right">
+          <!--          <app-song-like [songIdInput]="song.id"></app-song-like>-->
+          <a class="btn-favorite" href="#"><i class="fa fa-heart-o"></i></a>
+          <a [attr.data-song-id]="playlist.id" class="btn-more" data-toggle="dropdown" href="#"><i class="fa fa-ellipsis-h"></i></a>
+          <div class="dropdown-menu pull-right black lt"></div>
+        </div>
+        <div class="item-title text-ellipsis">
+          <a  routerLink="/{{playlist.id}}/playlist/detail"><h5>{{ playlist.name }}</h5></a>
+        </div>
+        <div class="item-author text-sm text-ellipsis">
+        </div>
+        <div class="item-meta text-sm text-muted">
+          <span class="item-meta-category"><a class="label" href="browse.html">Ngày tạo</a></span>
+          <span class="item-meta-date text-xs">{{playlist.created_at}}6</span>
+        </div>
+        <div class="item-action visible-list m-t-sm">
+          <a  routerLink="/{{playlist.id}}/playlist/edit" class="btn btn-xs green" >Edit</a>
+          <button  (click)="delete(playlist.id)" class="btn btn-xs danger">
+            Delete
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

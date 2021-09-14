@@ -1,0 +1,9 @@
+<nav  style="background-image: url('https://anh.waki.vn/wp-content/uploads/2020/12/17139/music-background-music-note-digital-paper-1024x710.jpg')" class="navbar fixed-bottom navbar-light bg-light text-center">
+<!--  {{state.currentTime}}-->
+  <input style="width: 100%" min="0" [max]="state.duration" step="1" [value]="state.currentTime" (input)="onSliderChangeEnd($event)" type="range" class="form-control-range" id="formControlRange">
+<!--  {{state.readableDuration}}-->
+  <button (click)="previous()" class="btn btn-primary "><i class="fas fa-step-backward"></i></button>
+  <button *ngIf="!state.playing" (click)="play()" class="btn btn-primary" ><i class="fas fa-play"></i></button>
+  <button *ngIf="state.playing" (click)="pause()" class="btn btn-primary" ><i class="fas fa-pause"></i></button>
+  <button (click)="next()" class="btn btn-primary"><i class="fas fa-step-forward"></i></button>
+</nav>

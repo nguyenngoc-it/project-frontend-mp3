@@ -1,0 +1,140 @@
+<div id="content" class="app-content white bg" role="main">
+  <div class="app-body" id="view">
+
+    <!-- ############ PAGE START-->
+
+    <div class="page-content" >
+      <form >
+        <div class="input-group input-group-lg col-md-6 ">
+          <input (input)="searchAll($event)" type="text" class="form-control" placeholder="Type keyword">
+          <span class="input-group-btn">
+								<button  class="btn b-a no-shadow white" type="button">Search</button>
+							</span>
+        </div>
+      </form>
+      <div class="row-col">
+        <div class="col-lg-9 b-r no-border-md">
+
+          <div class="padding">
+
+            <h2 class="widget-title h4 m-b">List Song</h2>
+            <div class="row">
+              <div class="col-xs-4 col-sm-4 col-md-3" *ngFor="let song of songs |paginate:{itemsPerPage:8,currentPage:page,totalItems:totalLength}">
+                <div class="item r" data-id="item-6"
+                     data-src="http://api.soundcloud.com/tracks/236107824/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
+                  <div class="item-media ">
+                    <a href="track.detail.html" class="item-media-content"
+                       style="background-image: url('{{song.song_image}}');"></a>
+                    <div class="item-overlay center">
+                      <button (click)="openFile(song.path)" class="btn-playpause">Play</button>
+                    </div>
+                  </div>
+                  <div class="item-info">
+                    <div class="item-overlay bottom text-right">
+                      <a href="#" class="btn-favorite"><i class="fa fa-heart-o"></i></a>
+                      <a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
+                      <div class="dropdown-menu pull-right black lt"></div>
+                    </div>
+                    <div class="item-title text-ellipsis">
+                      <a href="track.detail.html">{{song.song_name}}</a>
+                    </div>
+                    <div class="item-author text-sm text-ellipsis ">
+                      <a href="artist.detail.html" class="text-muted">{{song.author}}</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <pagination-controls (pageChange)="page = $event"></pagination-controls>
+            </div>
+            <h2 class="widget-title h4 m-b">Playlist</h2>
+            <div class="row item-list item-list-md m-b">
+              <div  *ngFor="let playlist of playlists " class="col-sm-6">
+                <div class="item r" data-id="item-4"
+                     data-src="http://api.soundcloud.com/tracks/230791292/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
+                  <div class="item-media ">
+                    <a href="track.detail.html" class="item-media-content"
+                       style="background-image: url('{{playlist.image}}');"></a>
+                    <div class="item-overlay center">
+                      <button class="btn-playpause">Play</button>
+                    </div>
+                  </div>
+                  <div class="item-info">
+                    <div class="item-overlay bottom text-right">
+                      <a href="#" class="btn-favorite"><i class="fa fa-heart-o"></i></a>
+                      <a href="#" class="btn-more" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i></a>
+                      <div class="dropdown-menu pull-right black lt"></div>
+                    </div>
+                    <div class="item-title text-ellipsis">
+                      <a routerLink="/{{playlist.id}}/playlist/detail" >{{playlist.name}}</a>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 w-xxl w-auto-md">
+          <div class="padding" style="bottom: 60px;" data-ui-jp="stick_in_parent">
+            <h6 class="text text-muted">New Song</h6>
+            <div *ngFor="let song of song5" class="row item-list item-list-sm m-b">
+              <div class="col-xs-12">
+                <div class="item r" data-id="item-8"
+                     data-src="http://api.soundcloud.com/tracks/236288744/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
+                  <div class="item-media ">
+                    <a href="track.detail.html" class="item-media-content"
+                       style="background-image: url({{song.song_image}});"></a>
+                  </div>
+                  <div class="item-info">
+                    <div class="item-title text-ellipsis">
+                      <a href="track.detail.html">{{song.song_name}}</a>
+                    </div>
+                    <div class="item-author text-sm text-ellipsis ">
+                      <a href="artist.detail.html" class="text-muted">{{song.author}}</a>
+                    </div>
+
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <h6 class="text text-muted">Go mobile</h6>
+            <div class="btn-groups">
+              <a href="" class="btn btn-sm dark lt m-r-xs" style="width: 135px">
+                <span class="pull-left m-r-sm">
+                  <i class="fa fa-apple fa-2x"></i>
+                </span>
+                <span class="clear text-left l-h-1x">
+                  <span class="text-muted text-xxs">Download on the</span>
+                  <b class="block m-b-xs">App Store</b>
+                </span>
+              </a>
+              <a href="" class="btn btn-sm dark lt" style="width: 133px">
+                <span class="pull-left m-r-sm">
+                  <i class="fa fa-play fa-2x"></i>
+                </span>
+                <span class="clear text-left l-h-1x">
+                  <span class="text-muted text-xxs">Get it on</span>
+                  <b class="block m-b-xs m-r-xs">Google Play</b>
+                </span>
+              </a>
+            </div>
+            <div class="b-b m-y"></div>
+            <div class="nav text-sm _600">
+              <a href="#" class="nav-link text-muted m-r-xs">About</a>
+              <a href="#" class="nav-link text-muted m-r-xs">Contact</a>
+              <a href="#" class="nav-link text-muted m-r-xs">Legal</a>
+              <a href="#" class="nav-link text-muted m-r-xs">Policy</a>
+            </div>
+            <p class="text-muted text-xs p-b-lg">&copy; Copyright 2016</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ############ PAGE END-->
+
+  </div>
+</div>

@@ -1,0 +1,108 @@
+
+<div class="app dk" id="app">
+<!-- profile-->
+  <!-- content -->
+  <div class="app-content white bg box-shadow-z2" id="content" role="main">
+    <div class="app-header hidden-lg-up white lt box-shadow-z1">
+      <div class="navbar">
+        <!-- brand -->
+        <a class="navbar-brand md" href="index.html" routerLink="/browse">
+          <svg height="32" viewBox="0 0 48 48" width="32" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" fill="rgba(255,255,255,0.2)" r="24"/>
+            <circle class="brand-color" cx="24" cy="24" fill="#1c202b" r="22"/>
+            <circle cx="24" cy="24" fill="#ffffff" r="10"/>
+            <circle class="brand-animate" cx="13" cy="13" fill="#ffffff" r="2"/>
+            <path d="M 14 24 L 24 24 L 14 44 Z" fill="#FFFFFF"/>
+            <circle cx="24" cy="24" fill="#000000" r="3"/>
+          </svg>
+
+          <img alt="." class="hide" src="assets/images/logo.png">
+          <span class="hidden-folded inline">pulse</span>
+        </a>
+        <!-- / brand -->
+        <!-- nabar right -->
+        <ul class="nav navbar-nav pull-right">
+          <li class="nav-item">
+            <!-- Open side - Naviation on mobile -->
+            <a class="nav-link" data-target="#aside" data-toggle="modal">
+              <i class="material-icons">menu</i>
+            </a>
+            <!-- / -->
+          </li>
+        </ul>
+        <!-- / navbar right -->
+      </div>
+    </div>
+    <div class="app-footer app-player grey bg">
+      <div class="playlist" style="width:100%"></div>
+    </div>
+    <div class="app-body" id="view">
+
+<!--      &lt;!&ndash; ############ PAGE START&ndash;&gt;-->
+<!--      <div [ngStyle]="{'background-image': 'url(' + userinfo.avatar + ')'}" class="page-bg" data-stellar-ratio="2"></div>-->
+      <div class="page-content">
+        <div class="padding b-b">
+          <div class="row-col">
+            <div class="col-sm w w-auto-xs m-b">
+              <div class="item w rounded">
+                <div class="item-media avatar-user">
+                  <div *ngIf="userFindId.user.avatar" [ngStyle]="{'background-image': 'url(' + userFindId.user.avatar + ')'}" class="item-media-content"></div>
+                  <div *ngIf="!userFindId.user.avatar" [ngStyle]="{'background-image': 'url(' +'https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png' + ')'}" class="item-media-content"></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm">
+              <div class="p-l-md no-padding-xs">
+                <h1 class="page-title">
+                  <span class="h1 _800">{{ userFindId.user.name }}</span>
+                </h1>
+                <p class="item-desc text-ellipsis text-muted" data-ui-toggle-class="text-ellipsis">
+                  ...
+                </p>
+                <div class="item-action m-b">
+                  <!--                  <a href="#" class="btn btn-sm rounded primary">Upload</a>-->
+                  <a *ngIf="checkUser()" routerLink="/{{id}}/edit-profile" class="btn btn-sm rounded primary" >Edit Profile</a>
+                  <a *ngIf="checkUser()" routerLink="/change-password" class="btn btn-sm rounded info" >Change
+                    Password</a>
+                </div>
+                <div class="block clearfix m-b">
+                  <span>9</span> <span class="text-muted">Albums</span>
+                  <span class="text-muted">Tracks</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- end profile-->
+        <div class="row-col">
+          <div class="col-lg-7 b-r no-border-md">
+            <div class="padding p-y-0 m-b-md">
+              <div class="nav-active-border b-primary bottom m-b-md m-t">
+                <ul class="nav l-h-2x" data-ui-jp="taburl">
+                  <li class="nav-item m-r inline">
+                    <a class="nav-link active" data-target="#track" data-toggle="tab" href="#">Tracks</a>
+                  </li>
+                  <li class="nav-item m-r inline">
+                    <a class="nav-link" data-target="#playlist" data-toggle="tab" href="#">Playlists</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="tab-content">
+                <div class="tab-pane active" id="track">
+                  <app-show-song-user></app-show-song-user>
+                </div>
+                <!--                Empty Playlist, click to add new play list-->
+                <div class="tab-pane" id="playlist">
+                  <div>
+                    <a class="btn btn-success" [hidden]="check()" routerLink="/playlist/create"><i class="far fa-plus">add new playlist</i></a>
+                    <app-my-playlist></app-my-playlist>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+

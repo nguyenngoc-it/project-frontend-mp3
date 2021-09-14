@@ -1,0 +1,68 @@
+<div class="container">
+  <form *ngIf="createFormSinger" (ngSubmit)="onSubmit()" [formGroup]="createFormSinger">
+    <label>Singer Name</label>
+    <input type="text" formControlName="name" class="form-control">
+    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+         class="alert">
+      <div *ngIf="name?.errors?.required">
+        Tên ca sĩ không được để trống
+      </div>
+    </div>
+    <label>Image</label>
+    <input type="file"  accept="image/*" (change)="onFileSelectedImage($event)">
+    <div class="progress" *ngIf="uploadProgress$ | async as progress">
+      <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': progress + '%' }" aria-valuemax="100" aria-valuemin="0"></div>
+    </div>
+    <label>gender</label>
+    <select class="form-control" formControlName="gender">
+      <option selected>Giới tính</option>
+      <option value="1">Male</option>
+      <option value="2">Female</option>
+      <div *ngIf="gender?.invalid && (gender?.dirty || gender?.touched)"
+           class="alert">
+        <div *ngIf="gender?.errors?.required">
+          Hãy chọn giới tính
+        </div>
+      </div>
+    </select>
+    <label>Day of birth</label>
+    <input type="date" formControlName="date" class="form-control">
+    <div *ngIf="date?.invalid && (date?.dirty || date?.touched)"
+         class="alert">
+      <div *ngIf="date?.errors?.required">
+        Hãy chọn năm sinh ca sĩ
+      </div>
+    </div>
+    <label>Music Category</label>
+    <select class="form-control" formControlName="music_category">
+      <option selected></option>
+      <option *ngFor="let category of categories" value="{{category.id}}">{{category.category_name}}</option>
+    </select>
+    <div *ngIf="music_category?.invalid && (date?.dirty || music_category?.touched)"
+         class="alert">
+      <div *ngIf="date?.errors?.required">
+        Hãy chọn năm sinh ca sĩ
+      </div>
+    </div>
+    <label>Band</label>
+    <input type="text" formControlName="band" class="form-control">
+    <div *ngIf="band?.invalid && (band?.dirty || band?.touched)"
+         class="alert">
+      <div *ngIf="band?.errors?.required">
+        Tên nhóm nhạc không được để trống
+      </div>
+    </div>
+    <label>Description</label>
+    <input type="text" formControlName="description" class="form-control">
+    <label>Famous Song</label>
+    <input type="text" formControlName="famousSong" class="form-control">
+    <div class="form-group">
+      <label>More info</label>
+      <input type="password" formControlName="moreInfo" class="form-control">
+    </div>
+    <div class="pro-form-btn text-center marger_top15">
+      <button class="btn btn-primary" style="margin-right: 80px;">Submit</button>
+      <a href="#" class="btn btn-danger" routerLink="">cancel</a>
+    </div>
+  </form>
+</div>

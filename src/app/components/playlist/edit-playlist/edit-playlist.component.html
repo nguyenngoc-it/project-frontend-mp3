@@ -1,0 +1,44 @@
+<div class="page-title m-b">
+  <h1 class="inline m-a-0" style="padding-left: 50px">Edit Playist</h1>
+</div>
+<div class="container">
+  <div class="b-t" style="margin-top: 10px; margin-left: 50px">
+    <form *ngIf="formEdit" [formGroup]="formEdit" (ngSubmit)="submit()">
+      <div class="col-sm-6">
+        <label>Tên playlist</label>
+        <input type="text" formControlName="name" class="form-control">
+        <div *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+             class="alert">
+          <div *ngIf="name?.errors?.required">
+            Bạn vui lòng nhập tên
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="col-sm-6">
+        <label>Tải ảnh lên</label>
+        <input type="file" accept="image/*" (change)="onFileSelectedImage($event)">
+        <div class="progress" *ngIf="uploadProgress$1 | async as progress">
+          <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': progress + '%' }" aria-valuemax="100" aria-valuemin="0"></div>
+        </div>
+
+      </div>
+      <div class="col-sm-8">
+        <label>Mô tả</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="description"></textarea>
+        <div *ngIf="description?.invalid && (description?.dirty || description?.touched)"
+             class="alert">
+          <div *ngIf="description?.errors?.required">
+            bạn vui lòng nhập mô tả
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <button class="btn btn-md green p-x-lg mr-3" type="submit"> Update </button>
+
+        <button routerLink="/profile" class="btn btn-md danger p-x-md">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,59 @@
+<div class="container" style="margin-bottom: 30px">
+  <table>
+    <tr>
+      <td>
+        <div class="form-outline">
+          <input type="search"  style="border-radius: 10px" id="form1" class="form-control" placeholder="Search Singer"/>
+        </div>
+      </td>
+      <td>
+        <button type="button" class="btn btn-primary">
+          <i class="fas fa-search"></i>
+        </button>
+      </td>
+    </tr>
+  </table>
+</div>
+<div class="container">
+  <div id="content" class="app-content white bg" role="main">
+    <div class="app-body" id="view">
+      <div class="page-content">
+        <div class="row-col">
+          <div class="row">
+            <div class="col-xs-4 col-sm-4 col-md-3" *ngFor="let singer of playlists
+" style="width: 20%">
+              <div class="item r" data-id="item-6"
+                   data-src="http://api.soundcloud.com/tracks/236107824/stream?client_id=a10d44d431ad52868f1bce6d36f5234c">
+                <div class="item-media ">
+                  <button><a
+                    style="background-image: url('{{singer.image}}')" class="item-media-content"
+                    routerLink="/{{singer.id}}/playlist/detail"></a>
+                  </button>
+                </div>
+                <div class="item-info">
+                  <div class="item-overlay bottom text-right">
+                    <a routerLink="/singer/detail/{{singer.id}}" class="btn-favorite"><i class="fa fa-heart-o"></i></a>
+                    <a routerLink="/singer/detail/{{singer.id}}" class="btn-more" data-toggle="dropdown"><i
+                      class="fa fa-ellipsis-h"></i></a>
+                    <div class="dropdown-menu pull-right black lt"></div>
+                  </div>
+                  <div class="item-title text-ellipsis">
+                    <a href="" routerLink="/singer/detail/{{singer.id}}">{{singer.name}}</a>
+                  </div>
+                  <div class="item-author text-sm text-ellipsis ">
+                    <a routerLink="/singer/detail/{{singer.id}}" class="text-muted">{{singer.date}}</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+<!--  <pagination-controls (pageChange)="page = $event"></pagination-controls>-->
+
+</div>
+

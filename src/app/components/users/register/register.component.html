@@ -1,0 +1,106 @@
+<div class="app dk" id="app">
+
+  <!-- ############ LAYOUT START-->
+
+  <div class="padding">
+    <div class="navbar">
+      <div class="pull-center">
+        <!-- brand -->
+        <a href="index.html" class="navbar-brand md">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="32" height="32">
+            <circle cx="24" cy="24" r="24" fill="rgba(255,255,255,0.2)"/>
+            <circle cx="24" cy="24" r="22" fill="#1c202b" class="brand-color"/>
+            <circle cx="24" cy="24" r="10" fill="#ffffff"/>
+            <circle cx="13" cy="13" r="2"  fill="#ffffff" class="brand-animate"/>
+            <path d="M 14 24 L 24 24 L 14 44 Z" fill="#FFFFFF" />
+            <circle cx="24" cy="24" r="3" fill="#000000"/>
+          </svg>
+
+          <img src="images/logo.png" alt="." class="hide">
+          <span class="hidden-folded inline">pulse</span>
+        </a>
+        <!-- / brand -->
+      </div>
+    </div>
+  </div>
+  <div class="b-t">
+    <div class="center-block w-xxl w-auto-xs p-y-md text-center">
+      <div class="p-a-md">
+        <div>
+          <a href="#" class="btn btn-block indigo text-white m-b-sm">
+            <i class="fa fa-facebook pull-left"></i>
+            Sign up with Facebook
+          </a>
+          <a href="#" class="btn btn-block red text-white">
+            <i class="fa fa-google-plus pull-left"></i>
+            Sign up with Google+
+          </a>
+        </div>
+        <div class="m-y text-sm">
+          OR
+        </div>
+        <form name="form"  *ngIf="registerForm" [formGroup]="registerForm" (ngSubmit)="register()">
+          <div class="form-group">
+            <input type="text" id="name" formControlName="name" class="form-control" placeholder="Họ tên" >
+            <div *ngIf="vali.name.invalid && (vali.name.dirty||vali.name.touched) ">
+              <div *ngIf="vali.name.errors">
+                <div *ngIf="vali.name.errors.required">
+                  <i class="form-text text-muted">Họ tên không được để trống</i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="email" formControlName="email" class="form-control" placeholder="Email" >
+            <div *ngIf="messageEmailError"><i class="form-text text-muted">{{messageEmailError}}</i></div>
+            <div *ngIf="vali.email.invalid && (vali.email.dirty||vali.email.touched)">
+              <div *ngIf="vali.email.errors">
+                <div *ngIf="vali.email.errors.required">
+                  <i class="form-text text-muted">Email không được để trống</i>
+                </div>
+                <div *ngIf="vali.email.errors.email">
+                  <i class="form-text text-muted">Email không đúng định dạng</i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password" formControlName="password" class="form-control" placeholder="Password" >
+            <div *ngIf="vali.password.invalid && (vali.password.dirty || vali.password.touched)">
+              <div *ngIf="vali.password.errors">
+                <div *ngIf="vali.password.errors.required">
+                  <i class="form-text text-muted">password không được để trống</i>
+                </div>
+                <div *ngIf="vali.password.errors.min">
+                  <i class="form-text text-muted">password phải lớn hơn 6 ký tự</i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password" formControlName="password_confirmation" class="form-control" placeholder="Password confirm" >
+            <div *ngIf="vali.password_confirmation.invalid && (vali.password_confirmation.dirty || vali.password_confirmation.touched)">
+              <div *ngIf="vali.password_confirmation.errors">
+                <div *ngIf="vali.password_confirmation.errors.required">
+                  <i class="form-text text-muted">password confirmation không được để trống</i>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="m-b-md text-sm">
+            <span class="text-muted">By clicking Sign Up, I agree to the</span>
+            <a href="#">Terms of service</a>
+            <span class="text-muted">and</span>
+            <a href="#">Policy Privacy.</a>
+          </div>
+          <button [disabled]="registerForm.invalid" type="submit" class="btn btn-lg green p-x-lg">Sign Up</button>
+        </form>
+        <div class="p-y-lg text-center">
+          <div>Already have an account? <a routerLink="/login" class="text-primary _600">Sign in</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ############ LAYOUT END-->
+</div>

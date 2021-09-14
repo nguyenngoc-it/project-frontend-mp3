@@ -1,0 +1,91 @@
+<div class="page-title m-b">
+  <h1 class="inline m-a-0" style="padding-left: 50px">Add New Song</h1>
+</div>
+<div class="container">
+  <div class="b-t" style="margin-top: 10px; margin-left: 50px">
+    <form *ngIf="formAdd" [formGroup]="formAdd" (ngSubmit)="submit()">
+      <div class="col-sm-6">
+        <label>Tên bài hát</label>
+        <input type="text" formControlName="song_name" class="form-control">
+        <div *ngIf="name?.invalid && (name?.dirty || name?.touched)"
+             class="alert">
+          <div *ngIf="name?.errors?.required">
+           Bạn vui lòng nhập tên
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <label>Tác giả</label>
+        <input type="text" formControlName="author" class="form-control">
+        <div *ngIf="author?.invalid && (author?.dirty || author?.touched)"
+             class="alert">
+          <div *ngIf="author?.errors?.required">
+        bạn vui lòng nhập tác giả
+          </div>
+        </div>
+      </div>
+      <br>
+
+        <div class="col-sm-12">
+          <label>Ca sĩ :</label>
+          <select class="form-select" aria-label="Default select example" formControlName="singer_id">
+            <option selected>Ca sĩ</option>
+            <option *ngFor="let singer of singers" value="{{singer.id}}" width="50px">{{singer.name}}</option>
+            <div *ngIf="singer?.invalid && (singer?.dirty || singer?.touched)"
+                 class="alert">
+              <div *ngIf="singer?.errors?.required">
+                bạn vui lòng chọn lòng ca sĩ
+              </div>
+            </div>
+          </select>
+        </div>
+        <div class="col-sm-12">
+          <label>Thể loại :</label>
+          <select class="form-select" aria-label="Default select example" formControlName="category_id" >
+            <option selected>Thể loại</option>
+            <option *ngFor="let category of categories" value="{{category.id}}" width="50px">{{category.category_name}}</option>
+            <div *ngIf="category?.invalid && (category?.dirty || category?.touched)"
+                 class="alert">
+              <div *ngIf="category?.errors?.required">
+                bạn vui lòng chọn thể loại
+              </div>
+            </div>
+          </select>
+        </div>
+
+      <div class="col-sm-6">
+        <label>Tải ảnh lên</label>
+        <input type="file" accept="image/*" (change)="onFileSelectedImage($event)">
+        <div class="progress" *ngIf="uploadProgress$1 | async as progress">
+          <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': progress + '%' }" aria-valuemax="100" aria-valuemin="0"></div>
+        </div>
+
+      </div>
+      <div class="col-sm-6">
+        <label>Tải nhạc lên</label>
+        <input type="file" accept="audio/*" (change)="onFileSelectedFile($event)">
+        <div class="progress" *ngIf="uploadProgress$ | async as progress">
+          <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': progress + '%' }" aria-valuemax="100" aria-valuemin="0"></div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <label>Mô tả</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="lyric"></textarea>
+        <div *ngIf="des?.invalid && (des?.dirty || des?.touched)"
+             class="alert">
+          <div *ngIf="des?.errors?.required">
+            bạn vui lòng chọn thể loại
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <button class="btn btn-md black p-x-lg mr-3" type="submit"> Add</button>
+
+        <button routerLink="/" class="btn btn-md dark p-x-md">Cancel</button>
+      </div>
+    </form>
+
+
+  </div>
+
+</div>

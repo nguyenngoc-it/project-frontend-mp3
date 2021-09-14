@@ -1,0 +1,183 @@
+<div class="page-content">
+  <div class="padding b-b">
+    <div class="row-col">
+      <div class="col-sm w w-auto-xs m-b">
+        <div class="item w r">
+          <div class="item-media">
+            <div class="item-media-content" [ngStyle]="{'background-image': 'url(' + playlist.image + ')'}"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm">
+        <div class="p-l-md no-padding-xs">
+          <div class="page-title">
+            <h1 class="inline">{{ playlist.name }}</h1>
+          </div>
+          <p class="item-desc text-ellipsis text-muted" data-ui-toggle-class="text-ellipsis">
+            {{ playlist.description }}
+          </p>
+          <div class="item-action m-b">
+            <a class="btn btn-icon white rounded btn-share pull-right" data-target="#share-modal"
+               data-toggle="modal"><i class="fa fa-share-alt"></i></a>
+            <button class="btn-playpause text-primary m-r-sm"></button>
+            <span class="text-muted">{{count}} bài hát</span>
+            <a class="btn btn-icon rounded btn-favorite"><i class="fa fa-heart-o"></i></a>
+            <span class="text-muted">232</span>
+            <div class="inline dropdown m-l-xs">
+              <a class="btn btn-icon rounded btn-more" data-toggle="dropdown"><i
+                class="fa fa-ellipsis-h"></i></a>
+              <div class="dropdown-menu pull-right black lt"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row-col-1">
+    <div class="col-lg-8 b-r no-border-md">
+      <div class="padding">
+        <h5 class="m-b">Danh sách bài hát</h5>
+        <div class="row m-b">
+          <div class="col-xs-6 col-sm-6 col-md-3" *ngFor="let song of mySongs ">
+            <div class="item r" data-id="item-12">
+              <div class="item-media ">
+                <a class="item-media-content"
+                   [ngStyle]="{'background-image': 'url(' + song.song_image + ')'}"></a>
+                <div class="item-overlay center">
+                  <button class="btn-playpause">Play</button>
+                </div>
+              </div>
+              <div class="item-info">
+                <div class="item-overlay bottom text-right">
+                  <a class="btn-favorite" (click)="removeSong(song.id)"><i class="fas fa-trash-alt"></i></a>
+                  <a class="btn-more" data-toggle="dropdown" href="#"><i
+                    class="fa fa-ellipsis-h"></i></a>
+                  <div style="width: 1px;height: 1px" class="dropdown-menu pull-right black lt"></div>
+                </div>
+                <div class="item-title text-ellipsis">
+                  <a>{{song.song_name}}</a>
+                </div>
+                <div class="item-author text-sm text-ellipsis hide">
+
+                </div>
+                <div class="item-meta text-sm text-muted">
+                                    <span class="item-meta-stats text-xs ">
+                                        <i class="fa fa-play text-muted"></i> 860
+                                        <i class="fa fa-heart m-l-sm text-muted"></i> 240
+                                    </span>
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <h5 class="m-b">Comments</h5>
+
+        <div  *ngFor="let cmt of commentt">
+          <a routerLink="/{{cmt.user_id}}/profile" style="color: lightseagreen"><i class="fal fa-comments-alt"></i>{{cmt.name}}</a>
+          <div>
+            <div class="dropdown" [hidden]="check(cmt.user_id)">
+              <a  style="width: 1px;height: 1px;float: right" data-toggle="dropdown"><i class="fa fa-ellipsis-h"></i>
+              </a>
+              <ul style="float: left" class="dropdown-menu">
+                <li><a href="#">sửa</a></li>
+                <li><a (click)="delete(cmt.id)">xóa</a></li>
+
+              </ul>
+            </div>
+            <span>{{cmt.content}}</span>
+          </div>
+
+
+        </div>
+        <h5 class="m-t-lg m-b">Leave a comment</h5>
+        <form *ngIf="formComment" [formGroup]="formComment" (ngSubmit)="comment()">
+          <div class="form-group">
+            <label>Comment</label>
+            <textarea class="form-control" placeholder="Type your comment" rows="5"
+                      formControlName="content"></textarea>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-success rounded" type="submit">Comment</button>
+          </div>
+        </form>
+
+      </div>
+    </div>
+    <div class="col-lg-2 w-xxl w-auto-md" [hidden]="check1()">
+      <div class="padding" data-ui-jp="stick_in_parent" style="bottom: 60px;">
+        <h6 class="text text-muted">Bài hát gợi ý</h6>
+        <div class="row item-list item-list-sm m-b">
+          <div *ngFor="let song of songs" class="col-xs-12">
+            <div [attr.data-id]="song.id" [attr.data-src]="song.path" class="item r">
+              <div class="item-media ">
+                <a [ngStyle]="{'background-image': 'url(' + song.song_image + ')'}"></a>
+
+                <div class="item-overlay center">
+                  <button (click)="openFile(song.path)" class="btn-playpause">Play</button>
+                </div>
+              </div>
+              <div>
+                <div class="item-overlay bottom text-right">
+                  <a class="btn-favorite" (click)="addSong(song.id)"><i class="fas fa-plus"></i></a>
+                  <a [attr.data-song-id]="song.id" class="btn-more" data-toggle="dropdown" href="#"><i
+                    class="fa fa-ellipsis-h"></i></a>
+                  <div class="dropdown-menu pull-right black lt"></div>
+                </div>
+                <div class="item-title text-ellipsis">
+                  <a>{{ song.song_name}}</a>
+                  <!--                  <a (click)="addToPlaylist(song.id)" title="Add to playlist">-->
+                  <!--                    <svg class="bi bi-plus" fill="currentColor" height="16" style="float: right;" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg">-->
+                  <!--                      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>-->
+                  <!--                    </svg>-->
+                  <!--                  </a>-->
+                </div>
+                <!--                <div class="item-author text-sm text-ellipsis">-->
+                <!--                  <a *ngFor="let singer of song.singers" class="text-muted" [routerLink]="['/singer/song', singer.id]">-->
+                <!--                    {{ singer.singer_name }},-->
+                <!--                  </a>-->
+                <!--                </div>-->
+              </div>
+            </div>
+          </div>
+        </div>
+        <h6 class="text text-muted">Go mobile</h6>
+        <div class="btn-groups">
+          <a class="btn btn-sm dark lt m-r-xs" href="" style="width: 135px">
+                        <span class="pull-left m-r-sm">
+                            <i class="fa fa-apple fa-2x"></i>
+                        </span>
+            <span class="clear text-left l-h-1x">
+                            <span class="text-muted text-xxs">Download on the</span>
+                            <b class="block m-b-xs">App Store</b>
+                        </span>
+          </a>
+          <a class="btn btn-sm dark lt" href="" style="width: 133px">
+                        <span class="pull-left m-r-sm">
+                            <i class="fa fa-play fa-2x"></i>
+                        </span>
+            <span class="clear text-left l-h-1x">
+                            <span class="text-muted text-xxs">Get it on</span>
+                            <b class="block m-b-xs m-r-xs">Google Play</b>
+                        </span>
+          </a>
+        </div>
+        <div class="b-b m-y"></div>
+        <div class="nav text-sm _600">
+          <a class="nav-link text-muted m-r-xs" href="#">About</a>
+          <a class="nav-link text-muted m-r-xs" href="#">Contact</a>
+          <a class="nav-link text-muted m-r-xs" href="#">Legal</a>
+          <a class="nav-link text-muted m-r-xs" href="#">Policy</a>
+        </div>
+        <p class="text-muted text-xs p-b-lg">&copy; Copyright 2021</p>
+      </div>
+    </div>
+    <div class="col-lg-3 w-xxl w-auto-md">
+
+    </div>
+  </div>
+</div>
+

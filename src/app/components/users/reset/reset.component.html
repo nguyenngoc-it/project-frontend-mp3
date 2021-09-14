@@ -1,0 +1,51 @@
+<div class="app dk" id="app">
+
+  <!-- ############ LAYOUT START-->
+
+  <div class="padding">
+    <div class="navbar">
+      <div class="pull-center">
+        <!-- brand -->
+        <a href="index.html" class="navbar-brand md">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="32" height="32">
+            <circle cx="24" cy="24" r="24" fill="rgba(255,255,255,0.2)"/>
+            <circle cx="24" cy="24" r="22" fill="#1c202b" class="brand-color"/>
+            <circle cx="24" cy="24" r="10" fill="#ffffff"/>
+            <circle cx="13" cy="13" r="2"  fill="#ffffff" class="brand-animate"/>
+            <path d="M 14 24 L 24 24 L 14 44 Z" fill="#FFFFFF" />
+            <circle cx="24" cy="24" r="3" fill="#000000"/>
+          </svg>
+
+          <img src="images/logo.png" alt="." class="hide">
+          <span class="hidden-folded inline">pulse</span>
+        </a>
+        <!-- / brand -->
+      </div>
+    </div>
+  </div>
+  <div class="b-t">
+    <div class="center-block w-xxl w-auto-xs p-y-md text-center">
+      <div class="p-a-md">
+        <div>
+          <h4>Reset your password?</h4>
+
+        </div>
+        <form (ngSubmit)="onSubmit(resetForm)" #resetForm="ngForm">
+          <div class="form-group">
+            <input type="password" placeholder="mật khẩu" class="form-control" name="password" ngModel>
+          </div>
+          <div class="form-group">
+            <input type="password" placeholder="nhập lại mật khẩu" class="form-control" name="password_confirmation"  ngModel>
+          </div>
+          <button type="submit" class="btn green btn-block p-x-md" >Gửi</button>
+        </form>
+        <div class="p-y-lg">
+          Return to
+          <a routerLink="login" class="text-primary _600">Sign in</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ############ LAYOUT END-->
+</div>
