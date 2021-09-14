@@ -33,7 +33,6 @@ export class ChangePasswordComponent implements OnInit {
   changePass(){
     let data= this.formChange.value;
     this.userSevice.changePassword(data).subscribe(res=>{
-
       this.router.navigate(['/'+this.user.id+'/profile'])
     })
 
